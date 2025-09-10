@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Slideshow de Fotos</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .controles {
+      margin-top: 20px;
+    }
+
+    button {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <img id="foto" src="imagens/01.jpg" alt="Slideshow">
+
+  <div class="controles">
+    <button onclick="voltarFoto()">⟵ Voltar</button>
+    <button onclick="avancarFoto()">Avançar ⟶</button>
+  </div>
+
+  <script>
+    const totalFotos = 7;
+    let index = 1;
+    let intervalo;
+
+    function mostrarFoto() {
+      const img = document.getElementById('foto');
+      const nome = index.toString().padStart(2, '0') + '.jpg';
+      img.src = `imagens/${nome}`;
+    }
+
+    function avancarFoto() {
+      index = (index % totalFotos) + 1;
+      mostrarFoto();
+      reiniciarIntervalo();
+    }
+
+    function voltarFoto() {
+      index = (index - 2 + totalFotos) % totalFotos + 1;
+      mostrarFoto();
+      reiniciarIntervalo();
+    }
+
+    function reiniciarIntervalo() {
+      clearInterval(intervalo);
+      intervalo = setInterval(avancarFoto, 30000);
+    }
+
+    // Inicia slideshow automático
+    intervalo = setInterval(avancarFoto, 30000);
+  </script>
+
+</body>
+</html>
