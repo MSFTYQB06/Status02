@@ -4,55 +4,71 @@
   <meta charset="UTF-8">
   <title>Photo Slideshow with Legend</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
+      padding: 20px;
       background: #111;
       color: white;
       font-family: sans-serif;
-      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      min-height: 100vh;
     }
 
     .container {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 40px;
-      max-width: 90vw;
-      max-height: 90vh;
+      align-items: flex-start;
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
     }
 
     .photo-box img {
-      max-width: 60vw;
+      width: 100%;
+      max-width: 700px;
       max-height: 80vh;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
 
     .legend {
-      font-size: 14px;
-      line-height: 1.8;
       background: #222;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      max-width: 300px;
+      max-width: 400px;
+      flex: 1;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .legend strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
     }
 
     .legend ul {
       padding-left: 20px;
+      margin: 0;
     }
 
     .legend li {
       margin-bottom: 10px;
     }
 
-    .controls {
-      margin-top: 20px;
+    .buttons {
+      margin-top: 30px;
+      text-align: center;
     }
 
     button {
@@ -71,9 +87,19 @@
       background: #ddd;
     }
 
-    .buttons {
-      text-align: center;
-      margin-top: 20px;
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .photo-box img {
+        max-width: 90vw;
+      }
+
+      .legend {
+        max-width: 90vw;
+      }
     }
   </style>
 </head>
@@ -83,6 +109,7 @@
     <div class="photo-box">
       <img id="photo" src="images/01.jpg" alt="Slideshow Image">
     </div>
+
     <div class="legend">
       <strong>Legend:</strong>
       <ul>
@@ -92,47 +119,11 @@
         <li><strong>Connected</strong>: mark the line or device in color <span style="color: orange;">ORANGE</span></li>
         <li><strong>Yellow Tag</strong>: mark the box indicating the equipment in color <span style="color: yellow;">YELLOW</span></li>
         <li><strong>Conditional Yellow Tag</strong>: mark the box indicating the equipment in color <span style="color: brown;">BROWN</span></li>
-        <li><strong>Energized</strong>: marks the line or device in <span style="color: red;">RED</span> for energized, or <span style="color: green;">GREEN</span> for open circuit breaker or switch</li>
+        <li><strong>Energized</strong>: mark the line or device in <span style="color: red;">RED</span> for energized, or <span style="color: green;">GREEN</span> for open circuit breaker or switch</li>
       </ul>
     </div>
   </div>
 
   <div class="buttons">
     <button onclick="previousPhoto()">⟵ Previous</button>
-    <button onclick="nextPhoto()">Next ⟶</button>
-  </div>
-
-  <script>
-    const totalPhotos = 7;
-    let index = 1;
-    let interval;
-
-    function showPhoto() {
-      const img = document.getElementById('photo');
-      const filename = index.toString().padStart(2, '0') + '.jpg';
-      img.src = `images/${filename}`;
-    }
-
-    function nextPhoto() {
-      index = (index % totalPhotos) + 1;
-      showPhoto();
-      resetInterval();
-    }
-
-    function previousPhoto() {
-      index = (index - 2 + totalPhotos) % totalPhotos + 1;
-      showPhoto();
-      resetInterval();
-    }
-
-    function resetInterval() {
-      clearInterval(interval);
-      interval = setInterval(nextPhoto, 10000); // 10 seconds
-    }
-
-    // Start automatic slideshow
-    interval = setInterval(nextPhoto, 10000);
-  </script>
-
-</body>
-</html>
+    <button onclick="nextPhot
