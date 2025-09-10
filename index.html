@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Slideshow de Fotos</title>
+  <title>Photo Slideshow</title>
   <style>
     body {
       margin: 0;
@@ -23,7 +23,7 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
 
-    .controles {
+    .controls {
       margin-top: 20px;
     }
 
@@ -46,43 +46,43 @@
 </head>
 <body>
 
-  <img id="foto" src="imagens/01.jpg" alt="Slideshow">
+  <img id="photo" src="images/01.jpg" alt="Slideshow Image">
 
-  <div class="controles">
-    <button onclick="voltarFoto()">⟵ Back</button>
-    <button onclick="avancarFoto()">Advance ⟶</button>
+  <div class="controls">
+    <button onclick="previousPhoto()">⟵ Previous</button>
+    <button onclick="nextPhoto()">Next ⟶</button>
   </div>
 
   <script>
-    const totalFotos = 7;
+    const totalPhotos = 7; // Now using 7 photos
     let index = 1;
-    let intervalo;
+    let interval;
 
-    function mostrarFoto() {
-      const img = document.getElementById('foto');
-      const nome = index.toString().padStart(2, '0') + '.jpg';
-      img.src = `imagens/${nome}`;
+    function showPhoto() {
+      const img = document.getElementById('photo');
+      const filename = index.toString().padStart(2, '0') + '.jpg';
+      img.src = `images/${filename}`;
     }
 
-    function avancarFoto() {
-      index = (index % totalFotos) + 1;
-      mostrarFoto();
-      reiniciarIntervalo();
+    function nextPhoto() {
+      index = (index % totalPhotos) + 1;
+      showPhoto();
+      resetInterval();
     }
 
-    function voltarFoto() {
-      index = (index - 2 + totalFotos) % totalFotos + 1;
-      mostrarFoto();
-      reiniciarIntervalo();
+    function previousPhoto() {
+      index = (index - 2 + totalPhotos) % totalPhotos + 1;
+      showPhoto();
+      resetInterval();
     }
 
-    function reiniciarIntervalo() {
-      clearInterval(intervalo);
-      intervalo = setInterval(avancarFoto, 10000);
+    function resetInterval() {
+      clearInterval(interval);
+      interval = setInterval(nextPhoto, 10000); // 10 seconds
     }
 
-    // Inicia slideshow automático
-    intervalo = setInterval(avancarFoto, 10000);
+    // Start automatic slideshow
+    interval = setInterval(nextPhoto, 10000);
   </script>
 
 </body>
