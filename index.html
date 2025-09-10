@@ -31,7 +31,7 @@
     }
 
     .photo-box {
-      flex: 5; /* aumenta espaço da imagem */
+      flex: 3;
     }
 
     .photo-box img {
@@ -42,7 +42,7 @@
     }
 
     .legend {
-      flex: 1; /* reduz espaço da legenda */
+      flex: 1;
       background: #222;
       padding: 15px;
       border-radius: 10px;
@@ -74,7 +74,7 @@
       justify-content: center;
       gap: 10px;
     }
-    
+
     button {
       background: #fff;
       color: #000;
@@ -90,6 +90,7 @@
       background: #ddd;
     }
 
+    /* Responsividade para celular */
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -99,6 +100,20 @@
       .photo-box img,
       .legend {
         max-width: 90vw;
+      }
+    }
+
+    /* Estilo dos botões no celular */
+    @media (max-width: 600px) {
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button {
+        width: 80%;
+        max-width: 300px;
+        font-size: 18px;
       }
     }
   </style>
@@ -165,6 +180,7 @@
 
 </body>
 </html>
+
 
 
 
