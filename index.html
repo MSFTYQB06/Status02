@@ -2,25 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Photo Slideshow</title>
+  <title>Photo Slideshow with Legend</title>
   <style>
     body {
       margin: 0;
       background: #111;
+      color: white;
+      font-family: sans-serif;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      color: white;
-      font-family: sans-serif;
     }
 
-    img {
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
       max-width: 90vw;
+      max-height: 90vh;
+    }
+
+    .photo-box img {
+      max-width: 60vw;
       max-height: 80vh;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .legend {
+      font-size: 14px;
+      line-height: 1.8;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      max-width: 300px;
+    }
+
+    .legend ul {
+      padding-left: 20px;
+    }
+
+    .legend li {
+      margin-bottom: 10px;
     }
 
     .controls {
@@ -42,19 +70,40 @@
     button:hover {
       background: #ddd;
     }
+
+    .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
-  <img id="photo" src="images/01.jpg" alt="Slideshow Image">
+  <div class="container">
+    <div class="photo-box">
+      <img id="photo" src="images/01.jpg" alt="Slideshow Image">
+    </div>
+    <div class="legend">
+      <strong>Legend:</strong>
+      <ul>
+        <li><strong>Equipment on site</strong>: mark the box indicating the equipment in color <span style="color: blue;">BLUE</span></li>
+        <li><strong>Red Tag</strong>: mark the box indicating the equipment in color <span style="color: purple;">PURPLE</span></li>
+        <li><strong>Cable Pulling</strong>: mark the line or device in color <span style="color: gray;">GRAY</span></li>
+        <li><strong>Connected</strong>: mark the line or device in color <span style="color: orange;">ORANGE</span></li>
+        <li><strong>Yellow Tag</strong>: mark the box indicating the equipment in color <span style="color: yellow;">YELLOW</span></li>
+        <li><strong>Conditional Yellow Tag</strong>: mark the box indicating the equipment in color <span style="color: brown;">BROWN</span></li>
+        <li><strong>Energized</strong>: marks the line or device in <span style="color: red;">RED</span> for energized, or <span style="color: green;">GREEN</span> for open circuit breaker or switch</li>
+      </ul>
+    </div>
+  </div>
 
-  <div class="controls">
+  <div class="buttons">
     <button onclick="previousPhoto()">⟵ Previous</button>
     <button onclick="nextPhoto()">Next ⟶</button>
   </div>
 
   <script>
-    const totalPhotos = 7; // Now using 7 photos
+    const totalPhotos = 7;
     let index = 1;
     let interval;
 
