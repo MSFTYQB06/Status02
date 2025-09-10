@@ -75,6 +75,20 @@
       gap: 10px;
     }
 
+  @media (max-width: 600px) {
+  .buttons {
+    display: flex;
+    flex-direction: column; /* Organiza os botões verticalmente */
+    align-items: center;
+    gap: 8px;
+  }
+  button {
+    width: 80%; /* Botões maiores para facilitar o toque no celular */
+    max-width: 300px;
+    font-size: 18px;
+  }
+}
+    
     button {
       background: #fff;
       color: #000;
@@ -165,6 +179,7 @@
 
 </body>
 </html>
+
 
 
 
